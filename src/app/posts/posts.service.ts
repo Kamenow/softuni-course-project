@@ -40,7 +40,9 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return { ...this.posts.find((p) => p.id === id) };
+    return this.HttpClient.get<{ _id: string; title: string; content: string }>(
+      'http://localhost:3000/api/posts/' + id
+    );
   }
 
   addPost(title: string, content: string) {
@@ -52,6 +54,26 @@ export class PostsService {
       const id = responseData.postId;
       post.id = id;
       this.posts.push(post);
+      this.postsUpdated.next([...this.posts]);
+    });
+  }
+
+  updatePost(id: string, title: string, content: string) {
+    const post: Post = {
+      id,
+      title,
+      content,
+    };
+
+    this.HttpClient.put(
+      'http://localhost:3000/api/posts/' + id,
+      post
+    ).subscribe((responseData) => {
+      console.log(responseData);
+      const updatedPosts = [...this.posts];
+      const oldPostIndex = this.posts.findIndex((p) => p.id === post.id);
+      updatedPosts[oldPostIndex] = post;
+      this.posts = updatedPosts;
       this.postsUpdated.next([...this.posts]);
     });
   }
