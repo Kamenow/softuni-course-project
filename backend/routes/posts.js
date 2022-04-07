@@ -51,20 +51,33 @@ router.post(
   }
 );
 
-router.put("/:id", (req, res, next) => {
-  const id = req.params.id;
+router.put(
+  "/:id",
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename;
+    }
 
-  const post = new Post({
-    _id: id,
-    title: req.body.title,
-    content: req.body.content,
-  });
+    const id = req.params.id;
 
-  Post.findOneAndUpdate({ _id: id }, post).then((result) => {
-    console.log(result);
-    res.status(200).json({ message: "Post updated", post: result });
-  });
-});
+    const post = new Post({
+      _id: id,
+      title: req.body.title,
+      content: req.body.content,
+      imagePath: imagePath,
+    });
+
+    console.log(post);
+
+    Post.findOneAndUpdate({ _id: id }, post).then((result) => {
+      console.log(result);
+      res.status(200).json({ message: "Post updated", post: result });
+    });
+  }
+);
 
 router.get("", (req, res, next) => {
   const posts = Post.find().then((documents) => {

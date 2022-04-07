@@ -16,10 +16,10 @@ export class PostCreateComponent implements OnInit {
   enteredTitle: string = '';
   post: Post;
   isLoading: boolean = false;
-  form: any;
+  form: FormGroup;
   imagePreview: any;
   private mode = 'create';
-  private postId: any;
+  private postId: string;
 
   constructor(
     public postsService: PostsService,
@@ -50,11 +50,12 @@ export class PostCreateComponent implements OnInit {
             id: postData._id,
             title: postData.title,
             content: postData.content,
-            imagePath: null,
+            imagePath: postData.imagePath,
           };
           this.form?.setValue({
             title: this.post.title,
             content: this.post.content,
+            image: this.post.imagePath,
           });
         });
       } else {
@@ -87,19 +88,20 @@ export class PostCreateComponent implements OnInit {
     this.isLoading = true;
     if (this.mode === 'create') {
       this.postsService.addPost(
-        this.form?.value.title,
-        this.form?.value.content,
-        this.form?.value.image
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
       );
     } else {
       this.postsService.updatePost(
         this.postId,
-        this.form?.value.title,
-        this.form?.value.content
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
       );
     }
     this.isLoading = false;
 
-    this.form?.reset();
+    this.form.reset();
   }
 }
