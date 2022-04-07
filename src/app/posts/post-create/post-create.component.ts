@@ -14,7 +14,7 @@ import { mimeType } from './mime-type.validator';
 export class PostCreateComponent implements OnInit {
   enteredContent: string = '';
   enteredTitle: string = '';
-  post: any;
+  post: Post;
   isLoading: boolean = false;
   form: any;
   imagePreview: any;
@@ -50,6 +50,7 @@ export class PostCreateComponent implements OnInit {
             id: postData._id,
             title: postData.title,
             content: postData.content,
+            imagePath: null,
           };
           this.form?.setValue({
             title: this.post.title,
