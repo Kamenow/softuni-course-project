@@ -31,7 +31,7 @@ export const mimeType = (
         case 'ffd8ffe8':
           isValid = true;
           break;
-        default: // Or you can use the blob.type as fallback
+        default:
           isValid = false;
           break;
       }
