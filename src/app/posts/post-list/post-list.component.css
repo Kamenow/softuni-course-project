@@ -3,6 +3,10 @@
   margin-top: 1rem;
 }
 
+mat-paginator {
+  margin-top: 1rem;
+}
+
 .info-text {
   text-align: center;
 }
@@ -13,6 +17,8 @@ mat-spinner {
 
 .post-image {
   width: 100%;
+  max-width: 40rem;
+  margin: auto;
 }
 
 .post-image img {
