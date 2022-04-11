@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'selector-name',
@@ -7,4 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent {
   isLoading: boolean = false;
+
+  onLogin(form: NgForm) {
+    console.log(form.value);
+  }
 }
