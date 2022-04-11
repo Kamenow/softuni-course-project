@@ -3,10 +3,10 @@
   <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <input
-        matInput
+        type="email"
         name="email"
         ngModel
-        type="email"
+        matInput
         placeholder="E-Mail"
         #emailInput="ngModel"
         required
