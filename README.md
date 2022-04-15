@@ -26,8 +26,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Frontend 
 
-Ant-Design:
-https://material.angular.io
+Ant-Design:https://material.angular.io
+
+## Backend
+
+Mongoose:https://mongoosejs.com/docs/api.html
+Express:https://expressjs.com/en/api.html
 
 ## Further help
 
