@@ -1,4 +1,4 @@
-![alt text](https://github.com/Kamenow/softuni-course-project/blob/master/backend/images/132321-1649767018387-jpeg)
+![Main Screen](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/main.png)
 
 # Course-Porject
 
@@ -28,4 +28,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## 
+## Authentication Page
+
+![Authentication Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/auth.png)
+
+# Create Page
+
+![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/create.png)
