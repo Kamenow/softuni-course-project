@@ -39,6 +39,13 @@ Mongoose:https://mongoosejs.com/docs/api.html
 Express:https://expressjs.com/en/api.html
 </p>
 
+<h4>
+To run the server:  
+</h4>
+<p>
+npm run start:server
+</p>
+  
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
