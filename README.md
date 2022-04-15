@@ -1,4 +1,4 @@
-![alt text](https://prnt.sc/Bgj8Tergmuqcg)
+![alt text](https://github.com/Kamenow/softuni-course-project/blob/master/backend/images/132321-1649767018387-jpeg)
 
 # Course-Porject
 
