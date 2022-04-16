@@ -28,13 +28,17 @@ export class PostsService {
         map((postData) => {
           return {
             posts: postData.posts.map((post: any) => {
+              console.log(post);
+
               return {
                 title: post.title,
                 content: post.content,
                 id: post._id,
                 imagePath: post.imagePath,
                 creator: post.creator,
-                liked: post.liked,
+                liked: post.liked.map((p) => {
+                  return p;
+                }),
               };
             }),
             maxPosts: postData.maxPosts,
@@ -63,6 +67,7 @@ export class PostsService {
       content: string;
       imagePath: string;
       creator: string;
+      liked: any;
     }>('http://localhost:3000/api/posts/' + id);
   }
 
@@ -80,7 +85,13 @@ export class PostsService {
     });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(
+    id: string,
+    title: string,
+    content: string,
+    image: File | string,
+    liked: any
+  ) {
     let postData: Post | FormData;
 
     if (typeof image === 'object') {
@@ -89,9 +100,12 @@ export class PostsService {
       postData.append('title', title);
       postData.append('content', content);
       postData.append('image', image, title);
+      postData.append('liked', liked);
     } else {
-      postData = { id, title, content, imagePath: image, creator: null };
+      postData = { id, title, content, imagePath: image, creator: null, liked };
     }
+
+    console.log('POST-DATA-HTTP: ', postData);
 
     this.HttpClient.put(
       'http://localhost:3000/api/posts/' + id,

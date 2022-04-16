@@ -61,6 +61,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             content: postData.content,
             imagePath: postData.imagePath,
             creator: postData.creator,
+            liked: postData.liked,
           };
           this.form?.setValue({
             title: this.post.title,
@@ -107,7 +108,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.postId,
         this.form.value.title,
         this.form.value.content,
-        this.form.value.image
+        this.form.value.image,
+        this.post.liked
       );
     }
     this.isLoading = false;

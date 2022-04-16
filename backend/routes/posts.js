@@ -66,19 +66,23 @@ router.put(
   "/:id",
   checkAuth,
   multer({ storage: storage }).single("image"),
-  (req, res, next) => {
+  async (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename;
     }
 
-    const post = new Post({
+    let post;
+    const currentPost = await Post.findById(req.params.id);
+
+    post = new Post({
       _id: req.body.id,
       title: req.body.title,
       content: req.body.content,
       imagePath: imagePath,
       creator: req.userData.userId,
+      liked: currentPost.liked,
     });
 
     Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post)
@@ -126,6 +130,11 @@ router.get("/:id", (req, res, next) => {
   const id = req.params.id;
   Post.findById(id)
     .then((post) => {
+      // console.log("yo");
+      // console.log("yo");
+      // console.log("yo");
+      // console.log("yo");
+      // console.log(post);
       if (post) {
         res.status(200).json(post);
       } else {
@@ -163,7 +172,7 @@ router.put("/like/:id", checkAuth, (req, res, next) => {
       post
         .save()
         .then((likedPost) => {
-          console.log(likedPost);
+          // console.log(likedPost);
           res.status(201).json({
             message: "Post liked successfully",
             post: {
@@ -193,7 +202,7 @@ router.put("/unlike/:id", checkAuth, (req, res, next) => {
       post
         .save()
         .then((likedPost) => {
-          console.log(likedPost);
+          // console.log(likedPost);
           res.status(201).json({
             message: "Post liked successfully",
             post: {
