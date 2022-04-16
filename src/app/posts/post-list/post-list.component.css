@@ -3,6 +3,14 @@
   margin-top: 1rem;
 }
 
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 mat-paginator {
   margin-top: 1rem;
 }
@@ -24,4 +32,24 @@ mat-spinner {
 .post-image img {
   width: 100%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+mat-card {
+  width: calc(100% / 3 - 3rem);
+}
+
+mat-bard-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }

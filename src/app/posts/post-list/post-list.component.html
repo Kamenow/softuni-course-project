@@ -1,39 +1,49 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let post of posts">
-    <mat-expansion-panel-header>
+<div class="card-wrapper" *ngIf="posts.length > 0 && !isLoading">
+  <mat-card *ngFor="let post of posts">
+    <mat-card-title>
       {{ post.title }}
-    </mat-expansion-panel-header>
-    <div class="post-image">
-      <img [src]="post.imagePath" [alt]="post.title" />
-    </div>
+    </mat-card-title>
+    <!-- <div class="post-image"> -->
+    <img
+      mat-card-image
+      [src]="post.imagePath"
+      [alt]="post.title"
+      routerLink="/image/{{ post.id }}"
+    />
+    <!-- </div> -->
     <p>{{ post.content }}</p>
-    <mat-action-row>
-      <div *ngIf="userIsAuthenticated && userId === post.creator">
+    <mat-bard-content>
+      <div class="like-unlike">
+        <button
+          *ngIf="userIsAuthenticated && !post.liked.includes(userId)"
+          mat-button
+          color="primary"
+          (click)="OnLike(post.id)"
+        >
+          LIKE
+        </button>
+        <button
+          *ngIf="userIsAuthenticated && post.liked.includes(userId)"
+          mat-button
+          color="primary"
+          (click)="OnUnLike(post.id)"
+        >
+          UNLIKE
+        </button>
+      </div>
+      <div
+        class="auth-buttons"
+        *ngIf="userIsAuthenticated && userId === post.creator"
+      >
         <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
         <button mat-button color="warn" (click)="onDelete(post.id)">
           DELETE
         </button>
       </div>
-      <button
-        *ngIf="userIsAuthenticated && !post.liked.includes(userId)"
-        mat-button
-        color="primary"
-        (click)="OnLike(post.id)"
-      >
-        LIKE
-      </button>
-      <button
-        *ngIf="userIsAuthenticated && post.liked.includes(userId)"
-        mat-button
-        color="primary"
-        (click)="OnUnLike(post.id)"
-      >
-        UNLIKE
-      </button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-bard-content>
+  </mat-card>
+</div>
 <mat-paginator
   [length]="totalPosts"
   [pageSize]="postPerPage"
