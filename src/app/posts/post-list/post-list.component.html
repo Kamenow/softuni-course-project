@@ -23,6 +23,13 @@
       >
         LIKE
       </button>
+      <button
+        *ngIf="userIsAuthenticated && post.liked.includes(userId)"
+        mat-button
+        color="primary"
+        (click)="OnUnLike(post.id)"
+      >
+        UNLIKE
       </button>
     </mat-action-row>
   </mat-expansion-panel>

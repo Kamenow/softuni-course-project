@@ -113,4 +113,13 @@ export class PostsService {
       postId
     );
   }
+
+  unlikePost(postId: string) {
+    console.log(postId);
+
+    return this.HttpClient.put(
+      'http://localhost:3000/api/posts/unlike/' + postId,
+      postId
+    );
+  }
 }

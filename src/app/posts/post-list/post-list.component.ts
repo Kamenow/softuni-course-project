@@ -82,6 +82,20 @@ export class PostListComponent implements OnInit, OnDestroy {
     );
     this.isLoading = false;
   }
+
+  OnUnLike(postId: string) {
+    this.isLoading = true;
+    this.postsService.unlikePost(postId).subscribe(
+      () => {
+        this.postsService.getPosts(this.postPerPage, this.currentPage);
+      },
+      () => {
+        this.isLoading = false;
+      }
+    );
+    this.isLoading = false;
+  }
+
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();

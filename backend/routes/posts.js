@@ -182,4 +182,35 @@ router.put("/like/:id", checkAuth, (req, res, next) => {
       res.status(500).json({ message: "Fetching post failed!" });
     });
 });
+
+router.put("/unlike/:id", checkAuth, (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.userData.userId;
+  Post.findById(id)
+    .then((post) => {
+      // const index = post.liked.indexOf(userId);
+      post.liked.pull(userId);
+      post
+        .save()
+        .then((likedPost) => {
+          console.log(likedPost);
+          res.status(201).json({
+            message: "Post liked successfully",
+            post: {
+              ...likedPost,
+              id: likedPost._id,
+            },
+          });
+        })
+        .catch((error) => {
+          res.status(500).json({
+            message: "Liking a post failed!",
+          });
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Fetching post failed!" });
+    });
+});
+
 module.exports = router;
