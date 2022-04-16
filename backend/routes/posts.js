@@ -40,6 +40,7 @@ router.post(
       content: req.body.content,
       imagePath: url + "/images/" + req.file.filename,
       creator: req.userData.userId,
+      liked: [],
     });
 
     post
@@ -153,4 +154,32 @@ router.delete("/:id", checkAuth, (req, res, next) => {
     });
 });
 
+router.put("/like/:id", checkAuth, (req, res, next) => {
+  const id = req.params.id;
+  const userId = req.userData.userId;
+  Post.findById(id)
+    .then((post) => {
+      post.liked.push(userId);
+      post
+        .save()
+        .then((likedPost) => {
+          console.log(likedPost);
+          res.status(201).json({
+            message: "Post liked successfully",
+            post: {
+              ...likedPost,
+              id: likedPost._id,
+            },
+          });
+        })
+        .catch((error) => {
+          res.status(500).json({
+            message: "Liking a post failed!",
+          });
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Fetching post failed!" });
+    });
+});
 module.exports = router;

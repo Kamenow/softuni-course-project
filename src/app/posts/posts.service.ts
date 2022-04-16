@@ -18,9 +18,12 @@ export class PostsService {
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
 
-    this.HttpClient.get<{ message: string; posts: any; maxPosts: number }>(
-      'http://localhost:3000/api/posts' + queryParams
-    )
+    this.HttpClient.get<{
+      message: string;
+      posts: any;
+      maxPosts: number;
+      liked: any;
+    }>('http://localhost:3000/api/posts' + queryParams)
       .pipe(
         map((postData) => {
           return {
@@ -31,6 +34,7 @@ export class PostsService {
                 id: post._id,
                 imagePath: post.imagePath,
                 creator: post.creator,
+                liked: post.liked,
               };
             }),
             maxPosts: postData.maxPosts,
@@ -99,5 +103,14 @@ export class PostsService {
 
   deletePost(postId: string) {
     return this.HttpClient.delete('http://localhost:3000/api/posts/' + postId);
+  }
+
+  likePost(postId: string) {
+    console.log(postId);
+
+    return this.HttpClient.put(
+      'http://localhost:3000/api/posts/like/' + postId,
+      postId
+    );
   }
 }
