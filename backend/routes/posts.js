@@ -204,7 +204,7 @@ router.put("/unlike/:id", checkAuth, (req, res, next) => {
         .then((likedPost) => {
           // console.log(likedPost);
           res.status(201).json({
-            message: "Post liked successfully",
+            message: "Post unliked successfully",
             post: {
               ...likedPost,
               id: likedPost._id,
@@ -213,7 +213,7 @@ router.put("/unlike/:id", checkAuth, (req, res, next) => {
         })
         .catch((error) => {
           res.status(500).json({
-            message: "Liking a post failed!",
+            message: "Unliking a post failed!",
           });
         });
     })
