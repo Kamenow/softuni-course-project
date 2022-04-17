@@ -10,12 +10,13 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://qjo:dVrK1wucHFRR4RUQ@cluster0.jdyhb.mongodb.net/node-angular"
+    "mongodb+srv://qjo:Nv39IyJjHkCGXyhF@cluster0.jdyhb.mongodb.net/node-angular"
   )
   .then(() => {
     console.log("Connected to DB");
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     console.log("Connection failed");
   });
 
