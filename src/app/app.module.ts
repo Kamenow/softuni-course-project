@@ -23,6 +23,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.compoennt';
 import { ProfileComponent } from './profile/profile.component';
+import { SinglePostComponent } from './posts/single-post/single-post.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
     SignupComponent,
     ErrorComponent,
     ProfileComponent,
+    SinglePostComponent,
   ],
   imports: [
     BrowserModule,
