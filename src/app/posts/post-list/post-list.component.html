@@ -9,11 +9,11 @@
       mat-card-image
       [src]="post.imagePath"
       [alt]="post.title"
-      routerLink="/image/{{ post.id }}"
+      routerLink="/post/{{ post.id }}"
     />
     <!-- </div> -->
     <p>{{ post.content }}</p>
-    <mat-bard-content>
+    <mat-card-content>
       <div class="like-unlike">
         <button
           *ngIf="userIsAuthenticated && !post.liked.includes(userId)"
@@ -41,7 +41,7 @@
           DELETE
         </button>
       </div>
-    </mat-bard-content>
+    </mat-card-content>
   </mat-card>
 </div>
 <mat-paginator

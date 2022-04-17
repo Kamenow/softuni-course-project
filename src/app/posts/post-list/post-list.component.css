@@ -48,7 +48,7 @@ mat-card {
   width: calc(100% / 3 - 3rem);
 }
 
-mat-bard-content {
+mat-card-content {
   position: relative;
   display: flex;
   justify-content: space-between;

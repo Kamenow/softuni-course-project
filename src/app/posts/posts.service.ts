@@ -28,8 +28,6 @@ export class PostsService {
         map((postData) => {
           return {
             posts: postData.posts.map((post: any) => {
-              console.log(post);
-
               return {
                 title: post.title,
                 content: post.content,
@@ -46,8 +44,6 @@ export class PostsService {
         })
       )
       .subscribe((transformedPostData) => {
-        console.log(transformedPostData);
-
         this.posts = transformedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -104,8 +100,6 @@ export class PostsService {
     } else {
       postData = { id, title, content, imagePath: image, creator: null, liked };
     }
-
-    console.log('POST-DATA-HTTP: ', postData);
 
     this.HttpClient.put(
       'http://localhost:3000/api/posts/' + id,
