@@ -259,4 +259,36 @@ router.put("/comment/:postId", checkAuth, (req, res, next) => {
       });
     });
 });
+
+router.put("/comment/delete/:postId", checkAuth, (req, res, next) => {
+  const postId = req.params.postId;
+  const commentId = req.body.commentId;
+
+  Post.findById(postId)
+    .then((post) => {
+      post.comments.pull(commentId);
+      post
+        .save()
+        .then((postUpdated) => {
+          res.status(200).json({
+            message: "Comment deleted successfully",
+            post: {
+              ...postUpdated,
+              id: postUpdated._id,
+            },
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: "Deleting comment failed.",
+          });
+        });
+    })
+    .catch((err) => {
+      res.status(404).json({
+        message: "Fetching comment failed",
+      });
+    });
+});
+
 module.exports = router;

@@ -137,4 +137,11 @@ export class PostsService {
       { text }
     );
   }
+
+  deleteComment(postID: string, commentId: string) {
+    return this.HttpClient.put(
+      'http://localhost:3000/api/posts/comment/delete/' + postID,
+      { commentId }
+    );
+  }
 }
