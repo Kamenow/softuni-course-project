@@ -12,11 +12,12 @@ import { PostsService } from '../posts.service';
 })
 export class SinglePostComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
-  post: Post;
+  post: any;
   postID: string;
   isLoading: boolean = false;
   userIsAuthenticated = false;
   userId: string;
+  user: any;
   private postsSub: Subscription = new Subscription();
   private authStatusSub: Subscription;
 
@@ -108,6 +109,19 @@ export class SinglePostComponent implements OnInit, OnDestroy {
         this.post = { id: post._id, ...post };
       });
     });
+  }
+
+  deleteComment(postID: string, commentId: string) {
+    console.log(postID);
+    console.log(commentId);
+    this.postsService
+      .deleteComment(this.postID, commentId)
+      .subscribe((post) => {
+        console.log(post);
+        this.postsService.getPost(this.postID).subscribe((post) => {
+          this.post = { id: post._id, ...post };
+        });
+      });
   }
 
   ngOnDestroy(): void {
