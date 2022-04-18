@@ -1,6 +1,5 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-<button (click)="logId()">YO</button>
 <mat-accordion multi="false" *ngFor="let post of posts">
   <mat-expansion-panel hideToggle *ngIf="post.liked.includes(userId)">
     <mat-expansion-panel-header>
