@@ -34,3 +34,39 @@
     </div>
   </mat-card-actions>
 </mat-card>
+<mat-card *ngIf="!isLoading">
+  Comment:
+  <form (submit)="comment(text)">
+    <mat-form-field>
+      <input
+        #text
+        matInput
+        type="text"
+        formControlName="comment"
+        placeholder="Comment text"
+      />
+      <mat-error *ngIf="">Please enter a post title.</mat-error>
+    </mat-form-field>
+    <button mat-button type="submit">COMMENT</button>
+  </form>
+</mat-card>
+<mat-card
+  class="comment-wrapper"
+  *ngIf="post.comments.length > 0 && !isLoading"
+>
+  <mat-card class="comment" *ngFor="let comment of post.comments">
+    <div>
+      <mat-card-content>{{ comment.text }}</mat-card-content>
+    </div>
+    <mat-card-actions>
+      <button
+        mat-button
+        color="warn"
+        *ngIf="comment.creator === userId"
+        (click)="deleteComment(post.id, comment._id)"
+      >
+        DELETE
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

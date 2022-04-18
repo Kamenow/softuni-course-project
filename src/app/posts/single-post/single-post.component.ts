@@ -101,6 +101,15 @@ export class SinglePostComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
+  comment(text: any) {
+    this.postsService.comment(this.postID, text.value).subscribe((post) => {
+      console.log(post);
+      this.postsService.getPost(this.postID).subscribe((post) => {
+        this.post = { id: post._id, ...post };
+      });
+    });
+  }
+
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
