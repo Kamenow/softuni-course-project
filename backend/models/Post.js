@@ -18,7 +18,24 @@ const postSchema = mongoose.Schema({
     ref: "User",
     required: true,
   },
-  liked: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  liked: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  comments: [
+    {
+      creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Post", postSchema);
