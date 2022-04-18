@@ -41,6 +41,7 @@ router.post(
       imagePath: url + "/images/" + req.file.filename,
       creator: req.userData.userId,
       liked: [],
+      comments: [],
     });
 
     post
@@ -83,6 +84,7 @@ router.put(
       imagePath: imagePath,
       creator: req.userData.userId,
       liked: currentPost.liked,
+      comments: currentPost.comments,
     });
 
     Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post)
@@ -222,4 +224,39 @@ router.put("/unlike/:id", checkAuth, (req, res, next) => {
     });
 });
 
+router.put("/comment/:postId", checkAuth, (req, res, next) => {
+  const userId = req.userData.userId;
+  const postId = req.params.postId;
+
+  Post.findById(postId)
+    .then((post) => {
+      const newComment = {
+        creator: userId,
+        text: req.body.text,
+      };
+
+      post.comments.push(newComment);
+      post
+        .save()
+        .then((postUpdated) => {
+          res.status(200).json({
+            message: "Commented successfully",
+            post: {
+              ...postUpdated,
+              id: postUpdated._id,
+            },
+          });
+        })
+        .catch((error) => {
+          res.status(500).json({
+            message: "Saving comment failed",
+          });
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Commenting failed",
+      });
+    });
+});
 module.exports = router;

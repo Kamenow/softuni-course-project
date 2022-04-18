@@ -130,4 +130,11 @@ export class PostsService {
       postId
     );
   }
+
+  comment(postID: string, text: string) {
+    return this.HttpClient.put(
+      'http://localhost:3000/api/posts/comment/' + postID,
+      { text }
+    );
+  }
 }
