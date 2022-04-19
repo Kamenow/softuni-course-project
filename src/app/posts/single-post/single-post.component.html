@@ -34,18 +34,17 @@
     </div>
   </mat-card-actions>
 </mat-card>
-<mat-card *ngIf="!isLoading">
+<mat-card *ngIf="!isLoading && userIsAuthenticated">
   Comment:
-  <form (submit)="comment(text)">
+  <form (ngSubmit)="comment()">
     <mat-form-field>
       <input
-        #text
         matInput
         type="text"
-        formControlName="comment"
         placeholder="Comment text"
+        [formControl]="text"
       />
-      <mat-error *ngIf="">Please enter a post title.</mat-error>
+      <mat-error *ngIf="text.invalid">Comment must not be empty</mat-error>
     </mat-form-field>
     <button mat-button type="submit">COMMENT</button>
   </form>

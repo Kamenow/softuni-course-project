@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -18,6 +19,7 @@ export class SinglePostComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   user: any;
+  text = new FormControl('', [Validators.required, Validators.minLength(1)]);
   private postsSub: Subscription = new Subscription();
   private authStatusSub: Subscription;
 
@@ -102,13 +104,23 @@ export class SinglePostComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  comment(text: any) {
-    this.postsService.comment(this.postID, text.value).subscribe((post) => {
-      console.log(post);
-      this.postsService.getPost(this.postID).subscribe((post) => {
-        this.post = { id: post._id, ...post };
+  comment() {
+    console.log(this.text);
+
+    if (this.text.invalid) {
+      console.log('nine');
+
+      return;
+    }
+
+    this.postsService
+      .comment(this.postID, this.text.value)
+      .subscribe((post) => {
+        console.log(post);
+        this.postsService.getPost(this.postID).subscribe((post) => {
+          this.post = { id: post._id, ...post };
+        });
       });
-    });
   }
 
   deleteComment(postID: string, commentId: string) {
