@@ -43,13 +43,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
   }
 
-  logId() {
-    console.log(this.posts);
-
-    // const liked = this.postsService.getLiked(this.userId);
-    // console.log(liked);
-  }
-
   onDelete(postId: string) {
     this.isLoading = true;
     this.postsService.deletePost(postId).subscribe(
