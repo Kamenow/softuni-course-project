@@ -24,6 +24,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.compoennt';
 import { ProfileComponent } from './profile/profile.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SinglePostComponent } from './posts/single-post/single-post.component';
     ErrorComponent,
     ProfileComponent,
     SinglePostComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,

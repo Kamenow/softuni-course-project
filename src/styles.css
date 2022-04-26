@@ -16,3 +16,11 @@ app-single-post {
   justify-content: center;
   align-items: center;
 }
+
+app-post-list,
+app-single-post,
+app-profile,
+app-post-create {
+  width: 80%;
+  margin: 1rem auto;
+}
