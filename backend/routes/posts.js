@@ -228,6 +228,12 @@ router.put("/comment/:postId", checkAuth, (req, res, next) => {
   const userId = req.userData.userId;
   const postId = req.params.postId;
 
+  if (req.body.text.trim().length === 0) {
+    return res.status(500).json({
+      message: "Comment must be at least 1 charachter long",
+    });
+  }
+
   Post.findById(postId)
     .then((post) => {
       const newComment = {
