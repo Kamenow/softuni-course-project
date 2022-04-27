@@ -3,6 +3,7 @@ const multer = require("multer");
 
 const Post = require("../models/Post.js");
 const checkAuth = require("../middleware/check-auth.js");
+const User = require("../models/User.js");
 
 const router = express.Router();
 
@@ -224,7 +225,7 @@ router.put("/unlike/:id", checkAuth, (req, res, next) => {
     });
 });
 
-router.put("/comment/:postId", checkAuth, (req, res, next) => {
+router.put("/comment/:postId", checkAuth, async (req, res, next) => {
   const userId = req.userData.userId;
   const postId = req.params.postId;
 
@@ -234,11 +235,14 @@ router.put("/comment/:postId", checkAuth, (req, res, next) => {
     });
   }
 
+  const user = await User.findById(userId);
+
   Post.findById(postId)
     .then((post) => {
       const newComment = {
         creator: userId,
         text: req.body.text,
+        email: user.email,
       };
 
       post.comments.push(newComment);
