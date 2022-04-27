@@ -30,7 +30,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .getPostUpdateListener()
       .subscribe((postData: { posts: Post[]; postCount: any }) => {
         this.isLoading = false;
-        this.posts = postData.posts;
+        const postLiked = [];
+        postData.posts.forEach((post) => {
+          if (post.liked.includes(this.userId)) {
+            postLiked.push(post);
+          }
+        });
+
+        this.posts = postLiked;
+        console.log(this.posts);
       });
 
     this.userIsAuthenticated = this.authService.getIsAuth();

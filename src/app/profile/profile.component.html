@@ -1,5 +1,12 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-
+<div class="liked-info">
+  <div class="last-liked">
+    <p>Last Liked:</p>
+  </div>
+  <div *ngIf="posts.length == 0" class="no-liked">
+    <p>You haven't liked anything</p>
+  </div>
+</div>
 <mat-accordion multi="false" *ngFor="let post of posts">
   <mat-expansion-panel hideToggle *ngIf="post.liked.includes(userId)">
     <mat-expansion-panel-header>

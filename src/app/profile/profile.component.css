@@ -7,9 +7,39 @@ img {
 }
 
 mat-expansion-panel {
+  margin: auto;
   margin-bottom: 1rem;
+  width: 80%;
+}
+
+mat-accordion {
 }
 
 mat-accordion:last-child {
   margin: unset;
+}
+
+.no-liked {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.last-liked {
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.liked-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
