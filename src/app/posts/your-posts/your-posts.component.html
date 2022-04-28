@@ -1,0 +1,16 @@
+<mat-card *ngFor="let post of posts" routerLink="/post/{{ post._id }}">
+  <div class="image-title-container">
+    <p class="title">{{ post.title }}</p>
+    <img mat-card-image src="{{ post.imagePath }}" alt="" />
+  </div>
+  <div class="content-container">
+    <div>
+      <p>{{ post.content }}</p>
+    </div>
+
+    <div>
+      <p>Likes:{{ post.liked.length }}</p>
+      <p>Comments:{{ post.comments.length }}</p>
+    </div>
+  </div>
+</mat-card>
