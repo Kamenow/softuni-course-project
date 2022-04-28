@@ -113,6 +113,12 @@ export class PostsService {
     return this.HttpClient.delete('http://localhost:3000/api/posts/' + postId);
   }
 
+  getUserPost(userId: string) {
+    return this.HttpClient.get(
+      'http://localhost:3000/api/posts/user/' + userId
+    );
+  }
+
   likePost(postId: string) {
     console.log(postId);
 
