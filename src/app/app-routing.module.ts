@@ -7,6 +7,7 @@ import { LandingComponent } from './landing/landing.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
+import { YourPostsComponent } from './posts/your-posts/your-posts.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -24,8 +25,17 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'post/:postID', component: SinglePostComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'post/:postID',
+    component: SinglePostComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'yourposts',
+    component: YourPostsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: SinglePostComponent },
 ];
 

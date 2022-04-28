@@ -25,6 +25,7 @@ import { ErrorComponent } from './error/error.compoennt';
 import { ProfileComponent } from './profile/profile.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { LandingComponent } from './landing/landing.component';
+import { YourPostsComponent } from './posts/your-posts/your-posts.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LandingComponent } from './landing/landing.component';
     ProfileComponent,
     SinglePostComponent,
     LandingComponent,
+    YourPostsComponent,
   ],
   imports: [
     BrowserModule,
