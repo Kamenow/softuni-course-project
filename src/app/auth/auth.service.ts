@@ -42,7 +42,7 @@ export class AuthService {
       authData
     ).subscribe(
       () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/posts']);
       },
       (error) => {
         this.authStatusListener.next(false);
@@ -73,7 +73,7 @@ export class AuthService {
             now.getTime() + expiresInDuration * 1000
           );
           this.saveAuthData(token, expirationDate, this.userId);
-          this.router.navigate(['/']);
+          this.router.navigate(['/posts']);
         }
       },
       (error) => {
@@ -106,7 +106,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     this.userId = null;
-    this.router.navigate(['/']);
+    this.router.navigate(['/posts']);
     this.clearAuthData();
     clearTimeout(this.tokenTimer);
   }
