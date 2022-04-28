@@ -55,6 +55,7 @@
 >
   <mat-card class="comment" *ngFor="let comment of post.comments">
     <div>
+      <p>{{ comment.email }}</p>
       <mat-card-content>{{ comment.text }}</mat-card-content>
     </div>
     <mat-card-actions>
