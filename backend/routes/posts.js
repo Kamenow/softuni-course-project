@@ -166,6 +166,19 @@ router.delete("/:id", checkAuth, (req, res, next) => {
     });
 });
 
+router.get("/user/:userId", checkAuth, (req, res, next) => {
+  Post.find({ creator: req.params.userId })
+    .then((user) => {
+      res.status(200).json({
+        message: "User posts fetched successfully",
+        posts: user,
+      });
+    })
+    .catch((error) => {
+      res.status(404).json({ message: "Fetching user posts failed!" });
+    });
+});
+
 router.put("/like/:id", checkAuth, (req, res, next) => {
   const id = req.params.id;
   const userId = req.userData.userId;
