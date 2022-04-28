@@ -36,7 +36,7 @@
 </mat-card>
 <mat-card *ngIf="!isLoading && userIsAuthenticated">
   Comment:
-  <form (ngSubmit)="comment()">
+  <form #form="ngForm" (ngSubmit)="comment(form)">
     <mat-form-field>
       <input
         matInput
