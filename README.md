@@ -50,10 +50,22 @@ npm run start:server
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Landing Page
+
+![Landing Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/landing.png)
+
 ## Authentication Page
 
 ![Authentication Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/auth.png)
 
-# Create Page
+## Create Page
 
 ![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/create.png)
+
+## Posts Page
+
+![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/posts.png)
+
+## Your Posts Page
+
+![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/your-poosts.png)
