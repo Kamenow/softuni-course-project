@@ -3,6 +3,7 @@ mat-spinner {
 }
 
 img {
+  cursor: pointer;
   width: 100%;
 }
 

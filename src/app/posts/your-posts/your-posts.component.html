@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-card *ngFor="let post of posts" routerLink="/post/{{ post._id }}">
   <div class="image-title-container">
     <p class="title">{{ post.title }}</p>

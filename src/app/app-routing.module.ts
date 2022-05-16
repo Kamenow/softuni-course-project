@@ -29,14 +29,13 @@ const routes: Routes = [
   {
     path: 'post/:postID',
     component: SinglePostComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'yourposts',
     component: YourPostsComponent,
     canActivate: [AuthGuard],
   },
-  { path: '**', component: SinglePostComponent },
+  { path: '**', redirectTo: '/posts', pathMatch: 'full' },
 ];
 
 @NgModule({

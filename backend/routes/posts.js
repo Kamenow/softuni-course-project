@@ -133,11 +133,6 @@ router.get("/:id", (req, res, next) => {
   const id = req.params.id;
   Post.findById(id)
     .then((post) => {
-      // console.log("yo");
-      // console.log("yo");
-      // console.log("yo");
-      // console.log("yo");
-      // console.log(post);
       if (post) {
         res.status(200).json(post);
       } else {

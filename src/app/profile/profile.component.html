@@ -12,7 +12,11 @@
     <mat-expansion-panel-header>
       <mat-panel-title> {{ post.title }} </mat-panel-title>
     </mat-expansion-panel-header>
-    <img src="{{ post.imagePath }}" alt="" />
+    <img
+      routerLink="/posts/post/{{ post._id }}"
+      src="{{ post.imagePath }}"
+      alt=""
+    />
     <mat-panel-description>
       {{ post.content }}
     </mat-panel-description>
