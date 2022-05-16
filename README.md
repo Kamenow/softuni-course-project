@@ -1,6 +1,4 @@
-![Main Screen](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/main.png)
-
-# Course-Porject
+## Course-Porject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
@@ -68,4 +66,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Your Posts Page
 
-![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/your-poosts.png)
+![Create Page](https://github.com/Kamenow/softuni-course-project/blob/master/Readme-Images/your-posts.png)
