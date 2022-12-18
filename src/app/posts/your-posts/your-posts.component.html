@@ -1,4 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="posts.length < 1" class="no-posts">
+  <p>No posts yet</p>
+</div>
 <mat-card *ngFor="let post of posts" routerLink="/post/{{ post._id }}">
   <div class="image-title-container">
     <p class="title">{{ post.title }}</p>
